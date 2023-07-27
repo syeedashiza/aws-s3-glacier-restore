@@ -1,0 +1,3 @@
+s3://com-elsevier-bos-databricks-dbfs/shard-elsevier-databricks/0/temp.parquet/part-00000-tid-3380405243442265778-540ac11b-fd14-474d-b1c1-c68cff43da95-519184-1-c000.snappy.parquet
+s3://com-elsevier-bos-databricks-dbfs/shard-elsevier-databricks/0/temp.parquet/_committed_vacuum3855612266028849849
+s3://com-elsevier-bos-databricks-dbfs/shard-elsevier-databricks/0/temp.parquet/_committed_2759251210040098982
