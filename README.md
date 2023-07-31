@@ -9,9 +9,9 @@ Restore objects
 ### Installation and Upgrade
 aws-s3-glacier-restore is developed in Python and uses pip.
 ### First time setup
-- The easiest way to install/upgrade s3select is to use pip in a virtualenv:
+- The easiest way to install/upgrade s3select is to use pip:
 ```
-$ pip install -U aws-s3-glacier-restore
+$ pip3 install -U aws-s3-glacier-restore
 ```
 ### Authentication
 aws-s3-glacier-restore uses the same authentication and endpoint configuration as aws-cli. If aws command is working on your machine, there is no need for any additional configuration.
@@ -46,16 +46,32 @@ optional arguments:
                         glacier and how many of them are restored already
   --profile PROFILE     Use a specific AWS profile from your credential file.
   ```
+
+
+The script 'aws-s3-glacier-restore' will read the object_restore.txt file and initiate the restoration process for the specified objects. The script will handle the restoration based on the configuration provided in the command-line arguments, such as the number of threads, restoration tier, days to keep restored files, etc.
+
+To restore objects, you can simply replace their S3 URLs or prefixes to the object_restore.txt file (https://github.com/elsevier-research/databricks-rt-utils/blob/main/s3-dbfs-glacier-restore/object_restore.txt). one per line, as shown in the example below.
+```
+s3://bucket-name/object-key-1
+s3://bucket-name/object-key-2
+s3://bucket-name/prefix/folder/object-key-3
+```
+The script will automatically pick up the objects and initiate the restoration process for them.
   
-  Example usage to restore files:
-  ```
-  $ aws-s3-glacier-restore -i restore_objects.txt -d 5
-  $ aws-s3-glacier-restore -i <input_file> -d <days_to_keep>
-  ```
- -i: Input file containing S3 paths to restore.
- -d: Number of days to keep restored files.
- 
- If you want to check restore status of files you can use -s switch:
- ```
- aws-s3-glacier-restore -i restore_object.txt -s
- ```
+Example usage to restore files:
+```
+$ aws-s3-glacier-restore -i object_restore.txt -d 5
+$ aws-s3-glacier-restore -i <input_file> -d <days_to_keep>
+```
+-i: Input file containing S3 paths to restore.
+-d: Number of days to keep restored files.
+
+or
+```
+aws-s3-glacier-restore -p s3://bucket-name/prefix/folder/object-key -d <days_to_keep>
+```
+
+If you want to check restore status of files you can use -s switch:
+```
+aws-s3-glacier-restore -i object_restore.txt -s
+```
